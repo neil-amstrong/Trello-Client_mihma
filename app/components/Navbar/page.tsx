@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { ChevronDown, Menu, X } from 'lucide-react';
 
-export const Navbar = () => {
+export default function Navbar () {
   const [hovered, setHovered] = useState<string | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -92,4 +92,3 @@ export const Navbar = () => {
   );
 };
 
-export default Navbar;
