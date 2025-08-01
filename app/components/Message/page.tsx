@@ -1,7 +1,7 @@
 
 'use client';
 
-export const Message = () => {
+export default function Message () {
 
     return ( 
  <div className="font-poppins bg-blue-600 shadow w-full min-h-[40px] flex flex-col items-center justify-center px-4 pt-4">
@@ -27,5 +27,5 @@ export const Message = () => {
 
     )
 }
-export default Message;
+
 
