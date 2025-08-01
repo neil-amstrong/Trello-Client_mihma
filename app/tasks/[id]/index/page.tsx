@@ -31,7 +31,7 @@ const initialColumns: Column[] = [
   },
 ];
 
-const index = () => {
+export default function index () {
   const [boardTitle, setBoardTitle] = useState("My Task Board");
   const [columns, setColumns] = useState<Column[]>(initialColumns);
   const [newColumnTitle, setNewColumnTitle] = useState("");
@@ -104,4 +104,4 @@ const index = () => {
   );
 };
 
-export default index;
+

@@ -2,9 +2,9 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
-import { API_BASE_URL } from '@/app/utils/config';
 import { loginSuccess } from '@/app/redux/Slice/authSlice';
 import { useDispatch } from 'react-redux';
+import { API_BASE_URL } from '@/app/utils/config';
 
 
 export default function RegisterPage() {

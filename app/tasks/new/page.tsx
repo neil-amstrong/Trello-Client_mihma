@@ -3,15 +3,15 @@
 
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { API_BASE_URL } from "@/app/utils/config";
 import { FiX } from "react-icons/fi";
+import { API_BASE_URL } from "@/app/utils/config";
 
 interface Props {
   onClose: () => void;
   onCreated: () => void;
 }
 
-const CreateTaskModal = ({ onClose, onCreated }: Props) => {
+export default function CreateTaskModal ({ onClose, onCreated }: Props) {
   const [token, setToken] = useState<string | null>(null);
   const [form, setForm] = useState({
     title: "",
@@ -138,4 +138,3 @@ const CreateTaskModal = ({ onClose, onCreated }: Props) => {
   );
 };
 
-export default CreateTaskModal;

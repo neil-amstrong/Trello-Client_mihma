@@ -3,8 +3,8 @@
 import { useState, useEffect } from "react";
 import { useRouter, useParams } from "next/navigation";
 import axios from "axios";
-import { API_BASE_URL } from "@/app/utils/config";
 import { FiX } from "react-icons/fi";
+import { API_BASE_URL } from "@/app/utils/config";
 
 interface EditTaskModalProps {
   taskId: number;
@@ -12,7 +12,7 @@ interface EditTaskModalProps {
   onUpdated: () => void;
 }
 
-const EditTaskModal: React.FC<EditTaskModalProps> = ({ taskId, onClose, onUpdated }) => {
+export default function EditTaskModal({ taskId, onClose, onUpdated }: EditTaskModalProps) {
   
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -184,4 +184,4 @@ const EditTaskModal: React.FC<EditTaskModalProps> = ({ taskId, onClose, onUpdate
   );
 };
 
-export default EditTaskModal;
+

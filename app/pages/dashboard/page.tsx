@@ -3,9 +3,10 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
-import { API_BASE_URL } from "@/app/utils/config";
+
 import CreateTaskModal from "@/app/tasks/new/page";
 import EditTaskModal from "@/app/tasks/[id]/edit/page";
+import { API_BASE_URL } from "@/app/utils/config";
 
 export default function Dashboard() {
   const [name, setName] = useState("User");
