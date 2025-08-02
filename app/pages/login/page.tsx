@@ -2,9 +2,10 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
-import { API_BASE_URL } from '@/app/utils/config';
+
 import { useDispatch } from 'react-redux';
 import { loginSuccess } from '@/app/redux/Slice/authSlice';
+import { API_BASE_URL } from '@/app/utils/config';
 
 export default function LoginPage() {
 const [email, setEmail] = useState('');
@@ -39,14 +40,29 @@ const handleLogin = async (e: React.FormEvent) => {
 
     return (
         <>
-        <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-500 to-purple-600 px-4">
-            <form 
-            onSubmit={handleLogin} 
-            className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md"
+      <div className="relative min-h-screen flex items-center justify-center bg-white overflow-hidden px-4">
+
+     <img
+        src="/assets/AuthLeft.png"
+        alt="Auth Left"
+        className="hidden ml-5 sm:block absolute bottom-0 left-0 w-[120px] sm:w-[100px] md:w-[250px] lg:w-[300px]"
+      />
+
+     
+      <img
+        src="/assets/AuthRight.png"
+        alt="Auth Right"
+        className="hidden mr-5 sm:block absolute bottom-0 right-0 w-[120px] sm:w-[100px] md:w-[250px] lg:w-[300px]"
+      />
+
+
+    <form 
+    onSubmit={handleLogin} 
+        className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md"
             >
     <h1 className="text-3xl font-bold text-center text-gray-800 mb-6"> Login </h1>
 
-<div className="mb-4">
+  <div className="mb-4">
     <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
    <input 
    type="email" 

@@ -42,7 +42,21 @@ const dispatch = useDispatch();
   return (
     <>
      
-      <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-500 to-purple-600 px-4">
+          <div className="relative min-h-screen flex items-center justify-center bg-white overflow-hidden px-4">
+
+     <img
+        src="/assets/AuthLeft.png"
+        alt="Auth Left"
+        className="hidden ml-5 sm:block absolute bottom-0 left-0 w-[120px] sm:w-[100px] md:w-[250px] lg:w-[300px]"
+      />
+
+     
+      <img
+        src="/assets/AuthRight.png"
+        alt="Auth Right"
+        className="hidden mr-5 sm:block absolute bottom-0 right-0 w-[120px] sm:w-[100px] md:w-[250px] lg:w-[300px]"
+      />
+
         <form
           onSubmit={handleRegister}
           className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md"
@@ -102,6 +116,7 @@ const dispatch = useDispatch();
             </a>
           </p>
         </form>
+
       </div>
     </>
   );

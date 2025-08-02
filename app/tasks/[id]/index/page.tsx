@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 type Task = {
   id: string;
@@ -31,10 +31,39 @@ const initialColumns: Column[] = [
   },
 ];
 
-export default function index () {
-  const [boardTitle, setBoardTitle] = useState("My Task Board");
+export default function IndexPage() {
+  const [boardTitle, setBoardTitle] = useState("");
   const [columns, setColumns] = useState<Column[]>(initialColumns);
   const [newColumnTitle, setNewColumnTitle] = useState("");
+  const [newTasks, setNewTasks] = useState<{ [columnId: string]: string }>({});
+  const [editingColumnId, setEditingColumnId] = useState<string | null>(null);
+  const [editedTitle, setEditedTitle] = useState("");
+
+  useEffect(() => {
+    const boardTitleFromStorage = localStorage.getItem("BoardTitle");
+    const createdTitle = localStorage.getItem("CreatedTaskTitle");
+    const createdId = localStorage.getItem("CreatedTaskId");
+
+    if (boardTitleFromStorage) {
+      setBoardTitle(boardTitleFromStorage);
+    }
+
+    if (createdTitle && createdId) {
+      const newTask: Task = {
+        id: createdId,
+        title: createdTitle,
+        status: "pending",
+      };
+
+      setColumns((prevCols) =>
+        prevCols.map((col) =>
+          col.id === "col-1"
+            ? { ...col, tasks: [newTask, ...col.tasks] }
+            : col
+        )
+      );
+    }
+  }, []);
 
   const addColumn = () => {
     if (!newColumnTitle.trim()) return;
@@ -47,54 +76,127 @@ export default function index () {
     setNewColumnTitle("");
   };
 
+  const addTaskToColumn = (columnId: string) => {
+    const title = newTasks[columnId];
+    if (!title?.trim()) return;
+
+    const newTask: Task = {
+      id: `task-${Date.now()}`,
+      title,
+      status: "pending",
+    };
+
+    setColumns((prev) =>
+      prev.map((col) =>
+        col.id === columnId ? { ...col, tasks: [...col.tasks, newTask] } : col
+      )
+    );
+
+    setNewTasks((prev) => ({ ...prev, [columnId]: "" }));
+  };
+
+  const deleteColumn = (columnId: string) => {
+    setColumns((prev) => prev.filter((col) => col.id !== columnId));
+  };
+
+  const startEditingTitle = (columnId: string, currentTitle: string) => {
+    setEditingColumnId(columnId);
+    setEditedTitle(currentTitle);
+  };
+
+  const saveEditedTitle = (columnId: string) => {
+    setColumns((prev) =>
+      prev.map((col) =>
+        col.id === columnId ? { ...col, title: editedTitle } : col
+      )
+    );
+    setEditingColumnId(null);
+    setEditedTitle("");
+  };
+
   return (
     <div className="p-6 bg-gray-100 min-h-screen">
-      {/* Board Title */}
-      <div className="mb-6">
-        <h1 className="text-3xl font-bold text-gray-800">{boardTitle}</h1>
-      </div>
+      <h1 className="text-3xl font-bold mb-6 text-gray-800">
+        {boardTitle || "My Task Board"}
+      </h1>
 
-      {/* Columns Container */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+      <div className="flex gap-4 overflow-x-auto pb-4">
         {columns.map((col) => (
-          <div
-            key={col.id}
-            className="bg-white rounded shadow-md p-4 w-full"
-          >
-            <h2 className="font-semibold mb-3 border-b pb-1">{col.title}</h2>
+          <div key={col.id} className="bg-white rounded shadow-md p-4 w-72 flex-shrink-0">
+            <div className="flex justify-between items-center mb-3">
+              {editingColumnId === col.id ? (
+                <input
+                  value={editedTitle}
+                  onChange={(e) => setEditedTitle(e.target.value)}
+                  onBlur={() => saveEditedTitle(col.id)}
+                  autoFocus
+                  className="border-b border-gray-400 outline-none text-lg font-semibold w-full"
+                />
+              ) : (
+                <h2
+                  className="font-semibold text-lg cursor-pointer"
+                  onClick={() => startEditingTitle(col.id, col.title)}
+                >
+                  {col.title}
+                </h2>
+              )}
+              <button
+                onClick={() => deleteColumn(col.id)}
+                className="text-red-500 hover:text-red-700 ml-2"
+                title="Delete list"
+              >
+                &times;
+              </button>
+            </div>
+
             <div className="space-y-2">
               {col.tasks.length === 0 && (
-                <p className="text-gray-400 italic">No tasks here</p>
+                <p className="text-gray-400 italic">No tasks</p>
               )}
-
               {col.tasks.map((task) => (
                 <div
                   key={task.id}
-                  className="bg-gray-50 border border-gray-300 rounded p-2 cursor-pointer hover:bg-gray-100"
+                  className="bg-gray-50 border border-gray-300 rounded p-2"
                 >
                   <p className="font-medium">{task.title}</p>
                   <p className="text-xs text-gray-500">Status: {task.status}</p>
-                  {task.dueDate && (
-                    <p className="text-xs text-gray-400">Due: {task.dueDate}</p>
-                  )}
                 </div>
               ))}
+            </div>
+
+            {/* Add new task */}
+            <div className="mt-3">
+              <input
+                type="text"
+                placeholder="Add task..."
+                value={newTasks[col.id] || ""}
+                onChange={(e) =>
+                  setNewTasks((prev) => ({ ...prev, [col.id]: e.target.value }))
+                }
+                className="w-full mt-2 px-2 py-1 border border-gray-300 rounded"
+              />
+              <button
+                onClick={() => addTaskToColumn(col.id)}
+                className="mt-2 w-full bg-blue-600 text-white rounded px-3 py-1 hover:bg-blue-700 transition"
+              >
+                + Add Task
+              </button>
             </div>
           </div>
         ))}
 
-        {/* Add New Column */}
-        <div className="flex flex-col justify-center bg-white rounded shadow-md p-4 w-full">
+        {/* Add new column */}
+        <div className="bg-white rounded shadow-md p-4 w-72 flex-shrink-0">
           <input
             type="text"
-            placeholder="New column title"
+            placeholder="New list title"
             value={newColumnTitle}
             onChange={(e) => setNewColumnTitle(e.target.value)}
-            className="mb-2 w-full px-3 py-2 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="mb-2 w-full px-3 py-2 rounded border border-gray-300 focus:outline-none"
           />
           <button
             onClick={addColumn}
-            className="w-full bg-blue-600 text-white rounded px-4 py-2 hover:bg-blue-700 transition"
+            className="w-full bg-green-600 text-white rounded px-4 py-2 hover:bg-green-700 transition"
           >
             + Add List
           </button>
@@ -102,6 +204,4 @@ export default function index () {
       </div>
     </div>
   );
-};
-
-
+}

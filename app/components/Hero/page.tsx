@@ -54,11 +54,13 @@ export default function Hero() {
         {/* Right Section */}
         <div className="w-full sm:w-1/2 flex items-center justify-center mt-10 sm:mt-0 ">
           <div className="p-4 sm:p-10 md:p-16 lg:p-20 max-w-xl flex flex-col items-center text-center">
-        <img  
-    src="/assets/mimi.png"
+<img
+  src="/assets/b.jpg"
   alt="Hero illustration"
-  className="w-[300px] sm:w-[500px] md:w-[700px] lg:w-[900px] h-auto"
+  className="w-[300px] sm:w-[500px] md:w-[700px] lg:w-[1200px] h-auto"
 />
+
+
 
            {/** 
             <img 
