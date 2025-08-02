@@ -5,8 +5,9 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 
 import CreateTaskModal from "@/app/tasks/new/page";
-import EditTaskModal from "@/app/tasks/[id]/edit/page";
 import { API_BASE_URL } from "@/app/utils/config";
+import EditTask from "@/app/components/EditTaskModal/page";
+
 
 export default function Dashboard() {
   const [name, setName] = useState("User");
@@ -200,7 +201,7 @@ export default function Dashboard() {
       )}
 
   {editTaskId !== null && (
-  <EditTaskModal
+  <EditTask
     taskId={editTaskId}
     onClose={() => setEditTaskId(null)}
     onUpdated={fetchTasks}

@@ -60,8 +60,6 @@ export default function Hero() {
   className="w-[300px] sm:w-[500px] md:w-[700px] lg:w-[1200px] h-auto"
 />
 
-
-
            {/** 
             <img 
            src="/assets/arrow.png"

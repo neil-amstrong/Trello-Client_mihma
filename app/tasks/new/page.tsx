@@ -62,7 +62,6 @@ export default function CreateTaskModal ({ onClose, onCreated }: Props) {
   localStorage.setItem("BoardTitle", createdTask.title);
 }
 
-
       onCreated(); // refresh task list
       onClose();   // close modal
     } catch (err) {

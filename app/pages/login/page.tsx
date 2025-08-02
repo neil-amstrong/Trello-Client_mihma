@@ -47,7 +47,6 @@ const handleLogin = async (e: React.FormEvent) => {
         alt="Auth Left"
         className="hidden ml-5 sm:block absolute bottom-0 left-0 w-[120px] sm:w-[100px] md:w-[250px] lg:w-[300px]"
       />
-
      
       <img
         src="/assets/AuthRight.png"

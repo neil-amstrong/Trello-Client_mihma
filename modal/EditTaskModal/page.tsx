@@ -12,7 +12,7 @@ interface EditTaskModalProps {
   onUpdated: () => void;
 }
 
-export default function EditTaskModal({ taskId, onClose, onUpdated }: EditTaskModalProps) {
+export default function EditTask({ taskId, onClose, onUpdated }: EditTaskModalProps) {
   
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
