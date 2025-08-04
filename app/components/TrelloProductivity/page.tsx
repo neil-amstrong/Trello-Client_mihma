@@ -81,19 +81,19 @@ export default function TrelloProductivity() {
       ))}
     </div>
 
-    {/* Pagination dots */}
-    <div className="flex justify-center gap-2 mt-4">
-      {slides.map((_, index) => (
-        <button
-          key={index}
-          className={`w-3 h-3 rounded-full ${
-            index === currentSlide ? "bg-blue-600" : "bg-gray-300"
-          }`}
-          onClick={() => setCurrentSlide(index)}
-          aria-label={`Go to slide ${index + 1}`}
-        />
-      ))}
-    </div>
+   {/* Pagination dots */}
+<div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-10 flex gap-2">
+  {slides.map((_, index) => (
+    <button
+      key={index}
+      className={`w-3 h-3 rounded-full transition-colors duration-300 ${
+        index === currentSlide ? "bg-blue-600" : "bg-gray-300"
+      }`}
+      onClick={() => setCurrentSlide(index)}
+      aria-label={`Go to slide ${index + 1}`}
+    />
+  ))}
+</div>
   </div>
 </div>
 

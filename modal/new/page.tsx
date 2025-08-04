@@ -53,15 +53,6 @@ export default function CreateTaskModal ({ onClose, onCreated }: Props) {
           },
         }
       );
-
-      const createdTask = res.data?.task;
-
-   if (createdTask?.id && createdTask?.title) {
-  localStorage.setItem("CreatedTaskId", createdTask.id.toString());
-  localStorage.setItem("CreatedTaskTitle", createdTask.title); 
-  localStorage.setItem("BoardTitle", createdTask.title);
-}
-
       onCreated(); // refresh task list
       onClose();   // close modal
     } catch (err) {

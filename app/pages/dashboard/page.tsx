@@ -4,9 +4,10 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 
-import CreateTaskModal from "@/app/tasks/new/page";
+import CreateTaskModal from "@/modal/new/page";
 import { API_BASE_URL } from "@/app/utils/config";
-import EditTask from "@/app/components/EditTaskModal/page";
+import EditTask from "@/modal/EditTaskModal/page";
+
 
 
 export default function Dashboard() {
@@ -162,7 +163,11 @@ export default function Dashboard() {
                 <div
                   key={task.id}
                   className="bg-gray-50 border rounded-lg p-4 shadow hover:shadow-md transition"
-                onClick={() => router.push(`/tasks/${task.id}/index`)}
+                onClick={() => {
+                  localStorage.setItem("createdTaskTitle", task.title);
+                  localStorage.setItem("createdTaskId", task.id);
+                  router.push(`/tasks/${task.id}/index`);
+                }}
                 >
                   <h3 className="text-lg font-semibold text-gray-800 mb-1">{task.title}</h3>
                   <p className="text-sm text-gray-600 mb-2">Status: {task.status}</p>

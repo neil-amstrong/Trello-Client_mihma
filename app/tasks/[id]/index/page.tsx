@@ -32,7 +32,7 @@ const initialColumns: Column[] = [
 ];
 
 export default function IndexPage() {
-  const [boardTitle, setBoardTitle] = useState("");
+  const [createdTitle, setCreatedTitle] = useState("");
   const [columns, setColumns] = useState<Column[]>(initialColumns);
   const [newColumnTitle, setNewColumnTitle] = useState("");
   const [newTasks, setNewTasks] = useState<{ [columnId: string]: string }>({});
@@ -40,13 +40,8 @@ export default function IndexPage() {
   const [editedTitle, setEditedTitle] = useState("");
 
   useEffect(() => {
-    const boardTitleFromStorage = localStorage.getItem("BoardTitle");
-    const createdTitle = localStorage.getItem("CreatedTaskTitle");
-    const createdId = localStorage.getItem("CreatedTaskId");
-
-    if (boardTitleFromStorage) {
-      setBoardTitle(boardTitleFromStorage);
-    }
+    const createdTitle = localStorage.getItem("createdTaskTitle");
+    const createdId = localStorage.getItem("createdTaskId");
 
     if (createdTitle && createdId) {
       const newTask: Task = {
@@ -55,6 +50,8 @@ export default function IndexPage() {
         status: "pending",
       };
 
+      setCreatedTitle(createdTitle);
+
       setColumns((prevCols) =>
         prevCols.map((col) =>
           col.id === "col-1"
@@ -62,6 +59,9 @@ export default function IndexPage() {
             : col
         )
       );
+
+    localStorage.removeItem("createdTaskTitle");
+    localStorage.removeItem("createdTaskId");
     }
   }, []);
 
@@ -117,7 +117,7 @@ export default function IndexPage() {
   return (
     <div className="p-6 bg-gray-100 min-h-screen">
       <h1 className="text-3xl font-bold mb-6 text-gray-800">
-        {boardTitle || "My Task Board"}
+        {createdTitle|| "My Task Board"}
       </h1>
 
       <div className="flex gap-4 overflow-x-auto pb-4">

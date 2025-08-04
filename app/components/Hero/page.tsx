@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { FaPlayCircle } from "react-icons/fa";
-import VideoModal from "@/app/Modal/VideoModal";
+import VideoModal from "@/modal/VideoModal";
 import { useRouter } from "next/navigation";
 
 export default function Hero() {
