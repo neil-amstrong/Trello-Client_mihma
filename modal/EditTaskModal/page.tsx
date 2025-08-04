@@ -104,84 +104,85 @@ export default function EditTask({ taskId, onClose, onUpdated }: EditTaskModalPr
     }
   };
 
-  if (loading) {
-    return <div className="text-center p-6">Loading task...</div>;
+ if (loading) {
+    return (
+      <div className="fixed inset-0 flex items-center justify-center z-50">
+        <div className="text-white text-lg">Loading task...</div>
+      </div>
+    );
   }
 
   return (
-    <div className="min-h-screen flex justify-center items-center bg-gray-100 p-4">
-      <form
-        onSubmit={handleSubmit}
-        className="bg-white shadow-lg rounded-xl p-6 w-full max-w-md space-y-4"
-      >
-          <button
-          onClick={onClose}
-          className="absolute t-4 right-7 text-gray-500 hover:text-red-600 text-xl"
-        aria-label="Close modal"
-       >
-        <FiX/>
-        </button>
-
-        <h2 className="text-2xl font-bold mb-2 text-center">Edit Task</h2>
-
-        {error && <p className="text-red-500 text-sm">{error}</p>}
-
-        <div>
-          <label className="block text-sm font-medium mb-1">Title *</label>
-          <input
-            type="text"
-            name="title"
-            value={form.title}
-            onChange={handleChange}
-            required
-            className="w-full border border-gray-300 rounded px-3 py-2"
-          />
-        </div>
-
-        <div>
-          <label className="block text-sm font-medium mb-1">Description</label>
-          <textarea
-            name="description"
-            value={form.description}
-            onChange={handleChange}
-            rows={3}
-            className="w-full border border-gray-300 rounded px-3 py-2"
-          />
-        </div>
-
-        <div>
-          <label className="block text-sm font-medium mb-1">Due Date</label>
-          <input
-            type="date"
-            name="dueDate"
-            value={form.dueDate}
-            onChange={handleChange}
-            className="w-full border border-gray-300 rounded px-3 py-2"
-          />
-        </div>
-
-        <div>
-          <label className="block text-sm font-medium mb-1">Status</label>
-          <select
-            name="status"
-            value={form.status}
-            onChange={handleChange}
-            className="w-full border border-gray-300 rounded px-3 py-2"
-          >
-            <option value="pending">Pending</option>
-            <option value="completed">Completed</option>
-          </select>
-        </div>
-
+    <div className="fixed inset-0 z-5 flex items-center justify-center p-4">
+      <div className="bg-white rounded-2xl shadow-lg w-full max-w-lg p-6 relative">
         <button
-          type="submit"
-          className="w-full bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700 transition"
+          onClick={onClose}
+          className="absolute top-3 right-3 text-gray-500 hover:text-red-600 text-xl"
+          aria-label="Close modal"
         >
-          Update Task
+          <FiX />
         </button>
-      </form>
+
+        <h2 className="text-2xl font-semibold text-center mb-4">Edit Task</h2>
+
+        {error && <p className="text-red-500 text-sm mb-2">{error}</p>}
+
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label className="block text-sm font-medium mb-1">Title *</label>
+            <input
+              type="text"
+              name="title"
+              value={form.title}
+              onChange={handleChange}
+              className="w-full border border-gray-300 rounded px-3 py-2"
+              required
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium mb-1">Description</label>
+            <textarea
+              name="description"
+              value={form.description}
+              onChange={handleChange}
+              className="w-full border border-gray-300 rounded px-3 py-2"
+              rows={3}
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium mb-1">Due Date</label>
+            <input
+              type="date"
+              name="dueDate"
+              value={form.dueDate}
+              onChange={handleChange}
+              className="w-full border border-gray-300 rounded px-3 py-2"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium mb-1">Status</label>
+            <select
+              name="status"
+              value={form.status}
+              onChange={handleChange}
+              className="w-full border border-gray-300 rounded px-3 py-2"
+            >
+              <option value="pending">Pending</option>
+              <option value="completed">Completed</option>
+            </select>
+          </div>
+
+          <button
+            type="submit"
+            className="w-full bg-green-600 text-white font-medium py-2 rounded transition"
+          >
+            Update Task
+          </button>
+        </form>
+      </div>
     </div>
   );
-};
-
-
+}

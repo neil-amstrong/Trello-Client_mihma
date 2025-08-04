@@ -13,7 +13,7 @@ export default function Hero() {
     <>
       <div className="font-poppins bg-gray-100 shadow min-h-screen w-full flex flex-col sm:flex-row">
         {/* Left Section */}
-        <div className="w-full sm:w-1/2 flex items-center justify-center mt-25 sm:mt-0 px-4">
+        <div className="w-full sm:w-1/2 flex items-center justify-center mt-20 sm:mt-0 px-4">
           <div className="p-4 sm:p-10 md:p-16 lg:p-20 max-w-xl flex flex-col items-center sm:items-start text-center sm:text-left">
             <h1 className="text-[40px] sm:text-[26px] md:text-[30px] lg:text-[40px] font-bold leading-snug">
               Collect, manage, and conquer your tasks from any location

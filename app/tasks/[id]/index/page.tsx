@@ -15,21 +15,7 @@ type Column = {
   tasks: Task[];
 };
 
-const initialColumns: Column[] = [
-  {
-    id: "col-1",
-    title: "To Do",
-    tasks: [
-      { id: "task-1", title: "Buy groceries", status: "pending" },
-      { id: "task-2", title: "Call Mom", status: "pending" },
-    ],
-  },
-  {
-    id: "col-2",
-    title: "In Progress",
-    tasks: [{ id: "task-3", title: "Write report", status: "pending" }],
-  },
-];
+const initialColumns: Column[] = [];
 
 export default function IndexPage() {
   const [createdTitle, setCreatedTitle] = useState("");
@@ -168,7 +154,7 @@ export default function IndexPage() {
             <div className="mt-3">
               <input
                 type="text"
-                placeholder="Add task..."
+                placeholder="Add a Card..."
                 value={newTasks[col.id] || ""}
                 onChange={(e) =>
                   setNewTasks((prev) => ({ ...prev, [col.id]: e.target.value }))
@@ -179,7 +165,7 @@ export default function IndexPage() {
                 onClick={() => addTaskToColumn(col.id)}
                 className="mt-2 w-full bg-blue-600 text-white rounded px-3 py-1 hover:bg-blue-700 transition"
               >
-                + Add Task
+                + Add 
               </button>
             </div>
           </div>

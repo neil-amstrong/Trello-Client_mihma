@@ -62,20 +62,21 @@ export default function CreateTaskModal ({ onClose, onCreated }: Props) {
   };
 
   return (
-    <div className="min-h-screen flex justify-center items-center bg-gray-100 p-4">
+   <div className="fixed inset-0 z-50 flex items-center justify-center p-4 overflow-y-auto">
       <form
         onSubmit={handleSubmit}
-        className="bg-white shadow-lg rounded-xl p-6 w-full max-w-md space-y-4 relative"
+        className="bg-white shadow-xl rounded-xl p-6 w-full max-w-md sm:max-w-lg md:max-w-xl space-y-4 relative"
       >
         <button
           onClick={onClose}
           className="absolute top-4 right-4 text-gray-500 hover:text-red-600 text-xl"
           aria-label="Close modal"
+          type="button"
         >
           <FiX />
         </button>
 
-        <h2 className="text-2xl font-bold mb-2 text-center">Create New Task</h2>
+        <h2 className="text-2xl sm:text-3xl font-bold mb-2 text-center">Create New Task</h2>
 
         {error && <p className="text-red-500 text-sm">{error}</p>}
 
@@ -86,7 +87,7 @@ export default function CreateTaskModal ({ onClose, onCreated }: Props) {
             value={form.title}
             onChange={handleChange}
             required
-            className="w-full border border-gray-300 rounded px-3 py-2"
+            className="w-full border border-gray-300 rounded px-3 py-2 text-sm sm:text-base"
             placeholder="Enter task title"
           />
         </div>
@@ -98,7 +99,7 @@ export default function CreateTaskModal ({ onClose, onCreated }: Props) {
             value={form.description}
             onChange={handleChange}
             rows={3}
-            className="w-full border border-gray-300 rounded px-3 py-2"
+            className="w-full border border-gray-300 rounded px-3 py-2 text-sm sm:text-base"
             placeholder="Optional description"
           />
         </div>
@@ -110,7 +111,7 @@ export default function CreateTaskModal ({ onClose, onCreated }: Props) {
             name="dueDate"
             value={form.dueDate}
             onChange={handleChange}
-            className="w-full border border-gray-300 rounded px-3 py-2"
+            className="w-full border border-gray-300 rounded px-3 py-2 text-sm sm:text-base"
           />
         </div>
 
@@ -120,7 +121,7 @@ export default function CreateTaskModal ({ onClose, onCreated }: Props) {
             name="status"
             value={form.status}
             onChange={handleChange}
-            className="w-full border border-gray-300 rounded px-3 py-2"
+            className="w-full border border-gray-300 rounded px-3 py-2 text-sm sm:text-base"
           >
             <option value="pending">Pending</option>
             <option value="completed">Completed</option>
@@ -135,6 +136,6 @@ export default function CreateTaskModal ({ onClose, onCreated }: Props) {
         </button>
       </form>
     </div>
-  );
+);
 };
 
