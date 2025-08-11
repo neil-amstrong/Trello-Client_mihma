@@ -38,6 +38,6 @@ jobs:
         registery: docker.io
         tags: leatest 
         dockerfile: Dockerfile
-        Username: 
-        Password:
-        
+        Username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+    
