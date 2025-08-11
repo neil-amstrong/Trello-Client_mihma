@@ -30,7 +30,7 @@ jobs:
     - name: Build Docker image/push to Dockerhub registry
       uses: mr-smithers-excellent/docker-build-push@v4
       with: 
-        image: neilchampion/Trello_app_image
+        image: neilchampion/trello_app_image
         registry: docker.io
         tag: latest
         dockerfile: Dockerfile
