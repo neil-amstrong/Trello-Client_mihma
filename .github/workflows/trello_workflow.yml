@@ -40,7 +40,7 @@ jobs:
       - name: Log in to Docker Hub
         uses: docker/login-action@v3
         with:
-          username: neilchampion
+          username: ${{ secrets.DOCKER_USER_NAME }}
           password: ${{ secrets.DOCKER_USER_PASSWORD }}  # ✅ Fixed: extra } removed
 
       - name: Build and Push Docker Image
