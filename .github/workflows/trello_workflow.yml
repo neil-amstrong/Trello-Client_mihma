@@ -32,7 +32,7 @@ jobs:
       with: 
         image: neilchampion/Trello_app_image
         registry: docker.io
-        tags: latest
+        tag: latest
         dockerfile: Dockerfile
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
