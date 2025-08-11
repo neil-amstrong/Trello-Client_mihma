@@ -34,11 +34,11 @@ jobs:
         registry: docker.io
         tag: latest
         dockerfile: Dockerfile
-        username: ${{ secrets.DOCKER_USERNAME }}
+        username: ${{ secrets.DOCKER_USER_NAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
 
     - name: Build Docker image
-      run: docker build -t ${{ secrets.DOCKER_USERNAME }}/trello-Client_mihma .
+      run: docker build -t ${{ secrets.DOCKER_USERNAME }}/trello_app_image .
 
     - name: Push Docker image
-      run: docker push ${{ secrets.DOCKER_USERNAME }}/trello-Client_mihma:latest  
+      run: docker push ${{ secrets.DOCKER_USERNAME }}/trello_app_image:latest  
