@@ -25,5 +25,5 @@ jobs:
     - name: Install Dependencies
       run:  npm install
       
-    - name: Start Trello_app
-      run:  npm run dev
+    - name: Build Trello_app
+      run:  npm run build
