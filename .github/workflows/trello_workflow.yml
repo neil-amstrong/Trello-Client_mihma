@@ -48,7 +48,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/trello_app_image:latest
+          tags: ${{ secrets.DOCKER_USER_NAME }}/trello_app_image:latest
           dockerfile: Dockerfile
 
       - name: Confirm image pushed
