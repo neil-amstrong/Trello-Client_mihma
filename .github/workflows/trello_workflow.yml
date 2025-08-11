@@ -10,7 +10,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [18.x, 20.x, 22.x]
+        node-version: [20.x]
 
     steps:
     - name: Check out code
@@ -40,5 +40,4 @@ jobs:
     - name: Build Docker image
       run: docker build -t ${{ secrets.DOCKER_USERNAME }}/trello_app_image .
 
-    - name: Push Docker image
-      run: docker push ${{ secrets.DOCKER_USERNAME }}/trello_app_image:latest  
+   
